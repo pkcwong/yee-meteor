@@ -1,0 +1,36 @@
+[class="header"] {
+    height: 4vmin;
+    overflow: auto ;
+    /*background-color: #0E0B16;*/
+}
+
+[class="left-container"]{
+    float: left;
+    width: 60%;
+    height: 96vmin;
+    /*border: 2px solid black;*/
+}
+
+[class="right-container"]{
+    float: left;
+    width: 40%;
+    height: 96vmin;
+    line-height: 2em;
+    /*background-color: rgb(255,204,0);*/
+    /*border: 0.2em solid grey;*/
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+[class="buttonGroup"]{
+    padding-right: 1em;
+}
+
+[class="title"] {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+[class="custom-button"] {
+
+}
