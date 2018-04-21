@@ -64,13 +64,17 @@
 }
 
 [class="right-top"] {
-    height: 50vh;
+    height: 40vh;
 }
 
 [class="right-bottom"] {
-    height: 50vh;
+    height: 60vh;
 }
 
+[id="writing"] {
+    height: 50vmin;
+    overflow: scroll;
+}
 
 input[type=title], select {
     height: 4vmin;
