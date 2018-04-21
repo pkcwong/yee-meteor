@@ -110,6 +110,9 @@ export class Index extends React.Component {
 								        id="similarWriting"
 								        bsStyle="primary"
 								        onClick={() => {
+									        $("#card1").html("<img src=\"/img/loading.gif\" height=\"112\" className=\"imageCenter\">");
+									        $("#card2").html("<img src=\"/img/loading.gif\" height=\"112\" className=\"imageCenter\">");
+									        $("#card3").html("<img src=\"/img/loading.gif\" height=\"112\" className=\"imageCenter\">");
 									        clearTimeout(this.interval2);
 									        this.interval2 = setTimeout(() => {
 										        $("#card1").html(
@@ -127,7 +130,7 @@ export class Index extends React.Component {
 											        "<br/>Despite the problems of motorways, they are necessary and useful. With careful preparation and planning, the problems they cause could be reduced. People today are also more aware of environmental issues and as a result cars and road transport in general are becoming more environmentally friendly." +
 											        "<br/><br/><b>Link: </b> <a href='https://www.ielts-exam.net/ielts_writing_samples_task_2/964/'>https://www.ielts-exam.net/ielts_writing_samples_task_2/964/</a>"
 										        );
-									        }, 5000);
+									        }, 3000);
 								        }}
 							        >
 								        Writeup Complete
@@ -136,22 +139,30 @@ export class Index extends React.Component {
 					        </div>
 				        </div>
 			        </div>
-				        <textarea
-					        className="text-area"
-					        onChange={(event) => {
-					            let text = event.target.value;
-						        this.setState({
-							        text: text
-						        });
-						        clearTimeout(this.interval);
-						        this.interval = setTimeout(() => {
-							        this.refresher();
-						        }, 5000);
-						        this.tooltipsGenerator('Henry', "King of England");
-					        }}
-					        placeholder="Hello there, you can begin typing here..."
-				        >
-			            </textarea>
+		            <textarea
+				        className="text-area"
+				        onChange={(event) => {
+				            let text = event.target.value;
+					        this.setState({
+						        text: text
+					        });
+					        clearTimeout(this.interval);
+					        this.interval = setTimeout(() => {
+						        this.refresher();
+					        }, 5000);
+					        this.tooltipsGenerator('Henry', "King of England");
+				        }}
+				        placeholder="Hello there, you can begin typing here..."
+		            >
+		            </textarea>
+			        <div className="title" id="facts">
+				        Facts Suggestion
+			        </div>
+			        <ListGroup>
+				        <ListGroupItem bsStyle="warning" id="factSuggestionContainer">
+					        N.A.
+				        </ListGroupItem>
+			        </ListGroup>
 		        </div>
 		        <div className="right-container">
 			        <div className="right-top">
@@ -257,9 +268,6 @@ export class Index extends React.Component {
 				        </Button>
 			        </Modal.Footer>
 		        </Modal>
-		        <Tooltip id="tooltip-top">
-
-		        </Tooltip>
 	        </div>
         )
     }
@@ -290,21 +298,5 @@ export class Index extends React.Component {
 			}
 	    });
     }
-
-	// tooltipsGenerator(keyword, value){
-	// 	return(
-	// 		// $("#text-area:contains(keyword)").str.replace({keyword},'{' /'}')
-	//
-	// 		<div>
-	// 			<OverlayTrigger
-	// 				overlay={<Tooltip id="tooltip-top">{value}</Tooltip>}
-	// 				placement="top"
-	// 				delayShow={300}
-	// 				delayHide={150}
-	// 			>
-	// 			</OverlayTrigger>
-	// 		</div>
-	// 	)
-	// }
 
 }
