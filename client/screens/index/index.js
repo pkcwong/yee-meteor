@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 
 export class Index extends React.Component {
-
+  
     constructor(props) {
         super(props);
 	    this.state = {
@@ -84,5 +84,4 @@ export class Index extends React.Component {
 	        </div>
         )
     }
-
 }
