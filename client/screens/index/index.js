@@ -156,11 +156,13 @@ export class Index extends React.Component {
 		            >
 		            </textarea>
 			        <div className="title" id="facts">
-				        Facts Suggestion
+					        Facts Suggestion
 			        </div>
 			        <ListGroup>
 				        <ListGroupItem bsStyle="warning" id="factSuggestionContainer">
-					        N.A.
+					        <div className="placeHolder">
+						        N.A.
+					        </div>
 				        </ListGroupItem>
 			        </ListGroup>
 		        </div>
@@ -171,15 +173,21 @@ export class Index extends React.Component {
 				        </div>
 				        <ListGroup>
 					        <ListGroupItem bsStyle="warning" id="card1">
-						       N.A.
+						        <div className="placeHolder">
+							        N.A.
+						        </div>
 					        </ListGroupItem>
 					        <br/>
 					        <ListGroupItem bsStyle="warning" id="card2">
-						        N.A.
+						        <div className="placeHolder">
+							        N.A.
+						        </div>
 					        </ListGroupItem>
 					        <br/>
 					        <ListGroupItem bsStyle="warning" id="card3">
-						        N.A.
+						        <div className="placeHolder">
+							        N.A.
+						        </div>
 					        </ListGroupItem>
 				        </ListGroup>
 			        </div>
@@ -189,7 +197,9 @@ export class Index extends React.Component {
 				        </div>
 				        <ListGroup>
 					        <ListGroupItem bsStyle="warning" id="writing">
-						        Click on Report Type for quick reference.
+						        <div className="placeHolder">
+							        Click on Text Type for quick reference.
+						        </div>
 					        </ListGroupItem>
 				        </ListGroup>
 			        </div>
