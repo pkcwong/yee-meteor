@@ -3,7 +3,7 @@
 }
 [class="header"] {
     padding: 1em;
-    height: 10vmin;
+    height: 10.5vmin;
     background-color: rgb(240,240,240);
 }
 
@@ -13,7 +13,7 @@
 
 [class="text-area"] {
     width: 100%;
-    height: 90%;
+    height: 89.5%;
 }
 
 [class="header-buttons"] {
@@ -24,6 +24,7 @@
     float: left;
     width: 60%;
     height: 100vmin;
+    font-size: 1.4em;
     /*border: 2px solid black;*/
 }
 
@@ -36,13 +37,19 @@
     background-color: rgb(255,204,0);
 }
 
-[class="buttonGroup"]{
+[class="buttonGroup"] {
     padding-right: 1em;
+    padding-top: 0.1em;
+}
+
+[class="card"] {
+
 }
 
 [class="title"] {
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 1.5em;
+    padding-bottom: 0.3em;
 }
 
 [class="custom-button"] {
@@ -56,8 +63,22 @@
     display: none;
 }
 
+[class="right-top"] {
+    height: 40vh;
+}
+
+[class="right-bottom"] {
+    height: 60vh;
+}
+
+[id="writing"] {
+    height: 50vmin;
+    overflow: scroll;
+}
+
 input[type=title], select {
     height: 4vmin;
     width: 50vmin;
     font-size: 3vmin;
 }
+
