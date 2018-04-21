@@ -2,14 +2,14 @@ import React from 'react';
 
 export class Index extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+	constructor(props) {
+		super(props);
+	}
 
-    render() {
-        return (
-            <div/>
-        )
-    }
+	render() {
+		return (
+			<div/>
+		)
+	}
 
 }
