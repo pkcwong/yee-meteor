@@ -22,14 +22,15 @@ export class Index extends React.Component {
 		    input: ''
 	    };
 	    this.interval = null;
+	    this.interval2 = null;
     }
 
     render() {
         return (
         	<div className="index">
 		        <div class="left-container">
-			        <div class="header">
-			           <div class="header-icon">
+			        <div className="header">
+			           <div className="header-icon">
 			            <img src="/img/yee.png"
 			                 alt="logo.png"
 			                 height="82"
@@ -107,21 +108,24 @@ export class Index extends React.Component {
 								        id="similarWriting"
 								        bsStyle="primary"
 								        onClick={() => {
-									        $("#card1").html(
-									        	"<b>Text: </b>" +
-										        "<br/>In conclusion, I think that long-term traffic and pollution reductions would depend on educating the public to use public transport more, and on governments using public money to construct and run efficient systems." +
-										        "<br><br/><b>Link: </b> http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27/"
-									        );
-									        $("#card2").html(
-										        "<b>Text: </b>" +
-										        "<br/>In summary, the whole world should encourage alternative modes and forms of transportation to compete with the traditional mode which is private cars. That will make our mother Earth greener and a better place to live in." +
-										        "<br/><br/><b>Link: </b> https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car"
-									        );
-									        $("#card3").html(
-										        "<b>Text: </b>" +
-										        "<br/>Despite the problems of motorways, they are necessary and useful. With careful preparation and planning, the problems they cause could be reduced. People today are also more aware of environmental issues and as a result cars and road transport in general are becoming more environmentally friendly." +
-										        "<br/><br/><b>Link: </b> https://www.ielts-exam.net/ielts_writing_samples_task_2/964/"
-									        );
+									        clearTimeout(this.interval2);
+									        this.interval2 = setTimeout(() => {
+										        $("#card1").html(
+											        "<b>Text: </b>" +
+											        "<br/>In conclusion, I think that long-term traffic and pollution reductions would depend on educating the public to use public transport more, and on governments using public money to construct and run efficient systems." +
+											        "<br><br/><b>Link: </b> <a href=\"http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27\">http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27</a>"
+										        );
+										        $("#card2").html(
+											        "<b>Text: </b>" +
+											        "<br/>In summary, the whole world should encourage alternative modes and forms of transportation to compete with the traditional mode which is private cars. That will make our mother Earth greener and a better place to live in." +
+											        "<br/><br/><b>Link: </b> <a href='https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car'>https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car</a>"
+										        );
+										        $("#card3").html(
+											        "<b>Text: </b>" +
+											        "<br/>Despite the problems of motorways, they are necessary and useful. With careful preparation and planning, the problems they cause could be reduced. People today are also more aware of environmental issues and as a result cars and road transport in general are becoming more environmentally friendly." +
+											        "<br/><br/><b>Link: </b> <a href='https://www.ielts-exam.net/ielts_writing_samples_task_2/964/'>https://www.ielts-exam.net/ielts_writing_samples_task_2/964/</a>"
+										        );
+									        }, 5000);
 								        }}
 							        >
 								        Writeup Complete
