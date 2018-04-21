@@ -71,11 +71,11 @@ button:hover{
 }
 
 [class="right-top"] {
-    height: 40vh;
+    height: 57vh;
 }
 
 [class="right-bottom"] {
-    height: 60vh;
+    height: 43vh;
 }
 
 [class="formWeb"] {
@@ -84,15 +84,35 @@ button:hover{
 }
 
 [id="writing"] {
-    height: 52vmin;
+    height: 35vmin;
     overflow: scroll;
     border-radius: 10px !important;
     background-color: #FFFFFF;
 }
 
-[id="card"] {
+[id="card1"] {
+    overflow: scroll;
+    height: 15vmin;
     border-radius: 10px !important;
     background-color: #FFFFFF
+ }
+
+[id="card2"] {
+    overflow: scroll;
+    height: 15vmin;
+    border-radius: 10px !important;
+    background-color: #FFFFFF
+}
+
+[id="card3"] {
+    overflow: scroll;
+    height: 15vmin;
+    border-radius: 10px !important;
+    background-color: #FFFFFF
+}
+
+[id="currentReference"] {
+    padding-bottom: 0.1em !important;
 }
 
 input[type=title], select {
