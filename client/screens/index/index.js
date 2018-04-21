@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, DropdownButton, MenuItem, ButtonToolbar} from 'react-bootstrap';
+import { ListGroup, ListGroupItem, DropdownButton, MenuItem, ButtonToolbar, Button, Modal, FormGroup, InputGroup, FormControl} from 'react-bootstrap';
 
 export class Index extends React.Component {
   
@@ -9,7 +9,10 @@ export class Index extends React.Component {
 	    	text: '',
 		    title: '',
 		    razor: {},
-		    titleType: 'Text Type'
+		    titleType: 'Text Type',
+		    referenceModal: {
+			    show: false
+		    }
 	    };
 	    this.interval = null;
     }
@@ -19,15 +22,15 @@ export class Index extends React.Component {
         	<div className="index">
 		        <div class="left-container">
 			        <div class="header">
-				           <div class="header-icon">
-				            <img src="/img/logo.png"
-				                 alt="logo.png"
-				                 height="70"
-				                 onChange={(event) => {
-					                 this.setState({
-						                 title: event.target.value
-					                 });
-				                 }}/>
+			           <div class="header-icon">
+			            <img src="/img/yee.png"
+			                 alt="logo.png"
+			                 height="82"
+			                 onChange={(event) => {
+				                 this.setState({
+					                 title: event.target.value
+				                 });
+			                 }}/>
 				        </div>
 				        <div className="header-buttons">
 					        <input type="title" placeholder="Type Your Title Here"/>
@@ -46,6 +49,15 @@ export class Index extends React.Component {
 						        </button>
 						        <button className="custom-button">
 							        Tools
+						        </button>
+						        <button className="custom-button" onClick={() => {
+							        this.setState({
+								        referenceModal: {
+									        show: true
+								        }
+							        });
+						        }}>
+							        Reference
 						        </button>
 						        <button className="custom-button">
 							        Help
@@ -84,41 +96,46 @@ export class Index extends React.Component {
 								        <MenuItem eventKey="4">Review</MenuItem>
 								        <MenuItem eventKey="5">Email</MenuItem>
 							        </DropdownButton>
+							        <Button id="similarWriting" bsStyle="primary">
+								        Writeup Complete
+							        </Button>
 						        </ButtonToolbar>
 					        </div>
 				        </div>
 			        </div>
-			        <textarea
-				        className="text-area"
-				        onChange={(event) => {
-				        	let text = event.target.value;
-					        this.setState({
-						        text: text
-					        });
-					        clearTimeout(this.interval);
-					        this.interval = setTimeout(() => {
-						        this.refresher();
-					        }, 5000);
-				        }}
-			        >
-	                Hello there, you can begin typing here...
-		        </textarea>
+			        {/*<div className="paddingLeft">*/}
+				        <textarea
+					        className="text-area"
+					        onChange={(event) => {
+					            let text = event.target.value;
+						        this.setState({
+							        text: text
+						        });
+						        clearTimeout(this.interval);
+						        this.interval = setTimeout(() => {
+							        this.refresher();
+						        }, 5000);
+					        }}
+				        >
+		                Hello there, you can begin typing here...
+			            </textarea>
+			        {/*</div>*/}
 		        </div>
 		        <div className="right-container">
 			        <div className="right-top">
 				        <div className="title">
-					        Facts Suggestions:
+					        Similar Writings
 				        </div>
 				        <ListGroup>
-					        <ListGroupItem bsStyle="warning" header="Heading 1">
+					        <ListGroupItem bsStyle="warning" header="Heading 1" id="card">
 						        Item 1
 					        </ListGroupItem>
 					        <br/>
-					        <ListGroupItem bsStyle="warning" header="Heading 1">
+					        <ListGroupItem bsStyle="warning" header="Heading 1" id="card">
 						        Item 2
 					        </ListGroupItem>
 					        <br/>
-					        <ListGroupItem bsStyle="warning" header="Heading 1">
+					        <ListGroupItem bsStyle="warning" header="Heading 1" id="card">
 						        ...
 					        </ListGroupItem>
 				        </ListGroup>
@@ -128,14 +145,67 @@ export class Index extends React.Component {
 					        Quick Reference for Writing:
 				        </div>
 				        <ListGroup>
-					        <ListGroupItem bsStyle="warning">
-						        <div id="writing">
-							        Click on Report Type for quick reference.
-						        </div>
+					        <ListGroupItem bsStyle="warning" id="writing">
+						        Click on Report Type for quick reference.
 					        </ListGroupItem>
 				        </ListGroup>
 			        </div>
 		        </div>
+		        <Modal
+			        show={this.state.referenceModal.show}
+			        onHide={() => {
+				        this.setState({
+					        referenceModal: {
+						        show: false
+					        }
+				        });
+			        }}
+		        >
+			        <Modal.Header>
+				        <Modal.Title>
+					        Adding Reference
+				        </Modal.Title>
+			        </Modal.Header>
+			        <Modal.Body>
+				        <div className="formWeb">
+					        Add a website link for your reference.
+				        </div>
+				        <form>
+					        <FormGroup>
+						        <InputGroup>
+							        <InputGroup.Addon>www.</InputGroup.Addon>
+							        <FormControl type="text" />
+						        </InputGroup>
+					        </FormGroup>
+				        </form>
+			        </Modal.Body>
+			        <Modal.Footer>
+				        <Button
+					        onClick={() => {
+						        this.setState({
+							        referenceModal: {
+								        show: false
+							        }
+						        });
+					        }}
+				        >
+					        Close
+				        </Button>
+				        <Button
+					        bsStyle="primary"
+					        onClick={() => {
+						        this.setState({
+							        referenceModal: {
+								        show: false
+							        }
+						        });
+					        }}
+				        >
+					        Submit
+				        </Button>
+			        </Modal.Footer>
+		        </Modal>
+
 	        </div>
         )
     }

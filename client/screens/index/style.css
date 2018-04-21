@@ -1,19 +1,26 @@
 [class="index"] {
     background-color: rgb(240,240,240);
 }
+
 [class="header"] {
-    padding: 1em;
+    padding: 0.8em;
     height: 10.5vmin;
     background-color: rgb(240,240,240);
 }
 
 [class="header-icon"] {
     float: left;
+    padding-right: 2vmin;
 }
 
 [class="text-area"] {
+    padding-left: 1vmin;
     width: 100%;
     height: 89.5%;
+    font-size: 1.7em;
+    border-color: rgb(240,240,240);
+    border-width: 1em;
+    resize: none;
 }
 
 [class="header-buttons"] {
@@ -24,7 +31,7 @@
     float: left;
     width: 60%;
     height: 100vmin;
-    font-size: 1.4em;
+    font-size: 1em;
     /*border: 2px solid black;*/
 }
 
@@ -34,16 +41,16 @@
     height: 100vmin;
     line-height: 2em;
     padding: 1em;
-    background-color: rgb(255,204,0);
+    background-color: rgb(240,240,240);
 }
 
 [class="buttonGroup"] {
     padding-right: 1em;
-    padding-top: 0.1em;
+    padding-top: 0.6em;
 }
 
-[class="card"] {
-
+button:hover{
+    background-color: white;
 }
 
 [class="title"] {
@@ -71,9 +78,21 @@
     height: 60vh;
 }
 
+[class="formWeb"] {
+    padding-bottom: 1em;
+    font-weight: bold;
+}
+
 [id="writing"] {
-    height: 50vmin;
+    height: 52vmin;
     overflow: scroll;
+    border-radius: 10px !important;
+    background-color: #FFFFFF;
+}
+
+[id="card"] {
+    border-radius: 10px !important;
+    background-color: #FFFFFF
 }
 
 input[type=title], select {
@@ -82,3 +101,6 @@ input[type=title], select {
     font-size: 3vmin;
 }
 
+[class="paddingLeft"]{
+    padding-left: 10px;
+}
