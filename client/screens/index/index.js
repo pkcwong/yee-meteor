@@ -147,7 +147,7 @@ export class Index extends React.Component {
 						        this.interval = setTimeout(() => {
 							        this.refresher();
 						        }, 5000);
-						        this.tooltipsGenerator('Henry', "King of England");
+						        //this.tooltipsGenerator('Henry', "King of England");
 					        }}
 					        placeholder="Hello there, you can begin typing here..."
 				        >
@@ -274,15 +274,15 @@ export class Index extends React.Component {
 					}
 				}, (err, res) => {
 					if (!err) {
-						if (res['ok']) {
-							let pack = this.state.razor;
+						this.setState((prev) => {
+							let pack = prev.razor;
 							pack[sentence] = res;
-							this.setState({
+							return {
 								razor: pack
-							}, () => {
-								console.log(this.state.razor);
-							});
-						}
+							}
+						}, () => {
+							console.log(this.state.razor);
+						});
 					} else {
 						console.error(err);
 					}
