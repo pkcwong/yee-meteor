@@ -292,15 +292,15 @@ export class Index extends React.Component {
 					}
 				}, (err, res) => {
 					if (!err) {
-						if (res['ok']) {
-							let pack = this.state.razor;
+						this.setState((prev) => {
+							let pack = prev.razor;
 							pack[sentence] = res;
-							this.setState({
+							return {
 								razor: pack
-							}, () => {
-								console.log(this.state.razor);
-							});
-						}
+							}
+						}, () => {
+							console.log(this.state.razor);
+						});
 					} else {
 						console.error(err);
 					}
