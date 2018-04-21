@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, DropdownButton, MenuItem, ButtonToolbar, Button, Modal, FormGroup, InputGroup, FormControl} from 'react-bootstrap';
+import { ListGroup, ListGroupItem, DropdownButton, MenuItem, ButtonToolbar, Button, Modal, FormGroup, InputGroup, FormControl, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 export class Index extends React.Component {
   
@@ -19,7 +19,9 @@ export class Index extends React.Component {
 			    'www.ielts-exam.net',
 			    'www.ielts-writing.info'
 	    	],
-		    input: ''
+		    input: '',
+		    textAreaPrev: '',
+	    	textAreaAfter: ''
 	    };
 	    this.interval = null;
 	    this.interval2 = null;
@@ -145,6 +147,7 @@ export class Index extends React.Component {
 						        this.interval = setTimeout(() => {
 							        this.refresher();
 						        }, 5000);
+						        this.tooltipsGenerator('Henry', "King of England");
 					        }}
 					        placeholder="Hello there, you can begin typing here..."
 				        >
@@ -254,7 +257,9 @@ export class Index extends React.Component {
 				        </Button>
 			        </Modal.Footer>
 		        </Modal>
+		        <Tooltip id="tooltip-top">
 
+		        </Tooltip>
 	        </div>
         )
     }
@@ -285,5 +290,21 @@ export class Index extends React.Component {
 			}
 	    });
     }
+
+	// tooltipsGenerator(keyword, value){
+	// 	return(
+	// 		// $("#text-area:contains(keyword)").str.replace({keyword},'{' /'}')
+	//
+	// 		<div>
+	// 			<OverlayTrigger
+	// 				overlay={<Tooltip id="tooltip-top">{value}</Tooltip>}
+	// 				placement="top"
+	// 				delayShow={300}
+	// 				delayHide={150}
+	// 			>
+	// 			</OverlayTrigger>
+	// 		</div>
+	// 	)
+	// }
 
 }
