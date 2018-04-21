@@ -29,7 +29,7 @@
 
 [class="right-container"]{
     float: left;
-    width: 37.8%;
+    width: 40%;
     height: 100vmin;
     line-height: 2em;
     padding: 1em;
@@ -46,19 +46,18 @@
 }
 
 [class="custom-button"] {
-    /*background-color: rgb(255,149,0);*/
     border: none;
     float: left;
     height: 4vmin;
-    border-radius: 5px;
     background-color: rgb(240,240,240);
-    /*width: 10vmin;*/
+}
+
+[class="dropdown-content"] {
+    display: none;
 }
 
 input[type=title], select {
     height: 4vmin;
     width: 50vmin;
     font-size: 3vmin;
-
 }
-

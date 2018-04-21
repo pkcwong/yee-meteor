@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonGroup, Form, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { ListGroup, ListGroupItem} from 'react-bootstrap';
 
 export class Index extends React.Component {
 
@@ -17,7 +17,14 @@ export class Index extends React.Component {
 		        <div class="left-container">
 			        <div class="header">
 				        <div class="header-icon">
-				            <img src="/img/logo.png" alt="logo.png" height="70"/>
+				            <img src="/img/logo.png"
+				                 alt="logo.png"
+				                 height="70"
+				                 onChange={(event) => {
+					                 this.setState({
+						                 title: event.target.value
+					                 });
+				                 }}/>
 				        </div>
 				        <div className="header-buttons">
 					        <input type="title" placeholder="Report Title"/>
@@ -25,6 +32,7 @@ export class Index extends React.Component {
 						        <button className="custom-button">
 							        File
 						        </button>
+
 						        <button className="custom-button">
 							        Edit
 						        </button>
