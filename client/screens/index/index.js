@@ -8,8 +8,10 @@ export class Index extends React.Component {
 	    this.state = {
 	    	text: '',
 		    title: '',
+		    razor: {},
 		    titleType: 'Text Type'
 	    };
+	    this.interval = null;
     }
 
     render() {
@@ -17,7 +19,7 @@ export class Index extends React.Component {
         	<div className="index">
 		        <div class="left-container">
 			        <div class="header">
-				        <div class="header-icon">
+				           <div class="header-icon">
 				            <img src="/img/logo.png"
 				                 alt="logo.png"
 				                 height="70"
@@ -89,9 +91,14 @@ export class Index extends React.Component {
 			        <textarea
 				        className="text-area"
 				        onChange={(event) => {
+				        	let text = event.target.value;
 					        this.setState({
-						        text: event.target.value
+						        text: text
 					        });
+					        clearTimeout(this.interval);
+					        this.interval = setTimeout(() => {
+						        this.refresher();
+					        }, 5000);
 				        }}
 			        >
 	                Hello there, you can begin typing here...
@@ -132,4 +139,32 @@ export class Index extends React.Component {
 	        </div>
         )
     }
+
+    refresher() {
+    	this.state.text.split('.').forEach((sentence) => {
+			if (this.state.razor[sentence] === undefined) {
+				Meteor.call('textrazor', {
+					method: 'entities',
+					params: {
+						text: sentence
+					}
+				}, (err, res) => {
+					if (!err) {
+						if (res['ok']) {
+							let pack = this.state.razor;
+							pack[sentence] = res;
+							this.setState({
+								razor: pack
+							}, () => {
+								console.log(this.state.razor);
+							});
+						}
+					} else {
+						console.error(err);
+					}
+				});
+			}
+	    });
+    }
+
 }
