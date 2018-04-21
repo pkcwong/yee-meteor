@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, DropdownButton, MenuItem, ButtonToolbar, Button, Modal, FormGroup, InputGroup, FormControl} from 'react-bootstrap';
+import { ListGroup, ListGroupItem, DropdownButton, MenuItem, ButtonToolbar, Button, Modal, FormGroup, InputGroup, FormControl, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 export class Index extends React.Component {
   
@@ -12,17 +12,27 @@ export class Index extends React.Component {
 		    titleType: 'Text Type',
 		    referenceModal: {
 			    show: false
-		    }
+		    },
+		    reference: [
+		    	'www.wikipedia.com',
+	    		'www.ielts-mentor.com',
+			    'www.ielts-exam.net',
+			    'www.ielts-writing.info'
+	    	],
+		    input: '',
+		    textAreaPrev: '',
+	    	textAreaAfter: ''
 	    };
 	    this.interval = null;
+	    this.interval2 = null;
     }
 
     render() {
         return (
         	<div className="index">
 		        <div class="left-container">
-			        <div class="header">
-			           <div class="header-icon">
+			        <div className="header">
+			           <div className="header-icon">
 			            <img src="/img/yee.png"
 			                 alt="logo.png"
 			                 height="82"
@@ -64,13 +74,13 @@ export class Index extends React.Component {
 						        </button>
 						        <ButtonToolbar>
 							        <DropdownButton
-								        bsStyle="default"
+								        bsStyle="link"
 								        title= {this.state.titleType}
 								        noCaret
 								        id="dropdown-no-caret"
 								        onSelect={
 									        (eventKey) => {
-									        	if(eventKey == '2'){
+									        	if(eventKey === '2'){
 									        		this.setState({
 												        titleType: "Report Writing"
 											        });
@@ -96,14 +106,36 @@ export class Index extends React.Component {
 								        <MenuItem eventKey="4">Review</MenuItem>
 								        <MenuItem eventKey="5">Email</MenuItem>
 							        </DropdownButton>
-							        <Button id="similarWriting" bsStyle="primary">
+							        <Button
+								        id="similarWriting"
+								        bsStyle="primary"
+								        onClick={() => {
+									        clearTimeout(this.interval2);
+									        this.interval2 = setTimeout(() => {
+										        $("#card1").html(
+											        "<b>Text: </b>" +
+											        "<br/>In conclusion, I think that long-term traffic and pollution reductions would depend on educating the public to use public transport more, and on governments using public money to construct and run efficient systems." +
+											        "<br><br/><b>Link: </b> <a href=\"http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27\">http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27</a>"
+										        );
+										        $("#card2").html(
+											        "<b>Text: </b>" +
+											        "<br/>In summary, the whole world should encourage alternative modes and forms of transportation to compete with the traditional mode which is private cars. That will make our mother Earth greener and a better place to live in." +
+											        "<br/><br/><b>Link: </b> <a href='https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car'>https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car</a>"
+										        );
+										        $("#card3").html(
+											        "<b>Text: </b>" +
+											        "<br/>Despite the problems of motorways, they are necessary and useful. With careful preparation and planning, the problems they cause could be reduced. People today are also more aware of environmental issues and as a result cars and road transport in general are becoming more environmentally friendly." +
+											        "<br/><br/><b>Link: </b> <a href='https://www.ielts-exam.net/ielts_writing_samples_task_2/964/'>https://www.ielts-exam.net/ielts_writing_samples_task_2/964/</a>"
+										        );
+									        }, 5000);
+								        }}
+							        >
 								        Writeup Complete
 							        </Button>
 						        </ButtonToolbar>
 					        </div>
 				        </div>
 			        </div>
-			        {/*<div className="paddingLeft">*/}
 				        <textarea
 					        className="text-area"
 					        onChange={(event) => {
@@ -115,11 +147,11 @@ export class Index extends React.Component {
 						        this.interval = setTimeout(() => {
 							        this.refresher();
 						        }, 5000);
+						        this.tooltipsGenerator('Henry', "King of England");
 					        }}
+					        placeholder="Hello there, you can begin typing here..."
 				        >
-		                Hello there, you can begin typing here...
 			            </textarea>
-			        {/*</div>*/}
 		        </div>
 		        <div className="right-container">
 			        <div className="right-top">
@@ -127,16 +159,16 @@ export class Index extends React.Component {
 					        Similar Writings
 				        </div>
 				        <ListGroup>
-					        <ListGroupItem bsStyle="warning" header="Heading 1" id="card">
-						        Item 1
+					        <ListGroupItem bsStyle="warning" id="card1">
+						       N.A.
 					        </ListGroupItem>
 					        <br/>
-					        <ListGroupItem bsStyle="warning" header="Heading 1" id="card">
-						        Item 2
+					        <ListGroupItem bsStyle="warning" id="card2">
+						        N.A.
 					        </ListGroupItem>
 					        <br/>
-					        <ListGroupItem bsStyle="warning" header="Heading 1" id="card">
-						        ...
+					        <ListGroupItem bsStyle="warning" id="card3">
+						        N.A.
 					        </ListGroupItem>
 				        </ListGroup>
 			        </div>
@@ -167,6 +199,20 @@ export class Index extends React.Component {
 				        </Modal.Title>
 			        </Modal.Header>
 			        <Modal.Body>
+				        <div className="formWeb" id="currentReference">
+					        Current References:
+				        </div>
+				        <ListGroup>
+					        {
+					        	this.state.reference.map((item) => {
+					        		return (
+					        			<ListGroupItem>
+									        {item}
+								        </ListGroupItem>
+							        )
+						        })
+					        }
+				        </ListGroup>
 				        <div className="formWeb">
 					        Add a website link for your reference.
 				        </div>
@@ -174,7 +220,13 @@ export class Index extends React.Component {
 					        <FormGroup>
 						        <InputGroup>
 							        <InputGroup.Addon>www.</InputGroup.Addon>
-							        <FormControl type="text" />
+							        <FormControl
+								        onChange={(event) => {
+								        	this.setState({
+										        input: "www." + event.target.value
+									        });
+								        }}
+								        type="text"/>
 						        </InputGroup>
 					        </FormGroup>
 				        </form>
@@ -194,18 +246,20 @@ export class Index extends React.Component {
 				        <Button
 					        bsStyle="primary"
 					        onClick={() => {
-						        this.setState({
-							        referenceModal: {
-								        show: false
-							        }
-						        });
+						        this.setState((prev) => {
+						        	return {
+								        reference: prev.reference.concat(prev.input)
+							        };
+						        })
 					        }}
 				        >
 					        Submit
 				        </Button>
 			        </Modal.Footer>
 		        </Modal>
+		        <Tooltip id="tooltip-top">
 
+		        </Tooltip>
 	        </div>
         )
     }
@@ -236,5 +290,21 @@ export class Index extends React.Component {
 			}
 	    });
     }
+
+	// tooltipsGenerator(keyword, value){
+	// 	return(
+	// 		// $("#text-area:contains(keyword)").str.replace({keyword},'{' /'}')
+	//
+	// 		<div>
+	// 			<OverlayTrigger
+	// 				overlay={<Tooltip id="tooltip-top">{value}</Tooltip>}
+	// 				placement="top"
+	// 				delayShow={300}
+	// 				delayHide={150}
+	// 			>
+	// 			</OverlayTrigger>
+	// 		</div>
+	// 	)
+	// }
 
 }
