@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, ListGroupItem} from 'react-bootstrap';
+import { ListGroup, ListGroupItem, DropdownButton, MenuItem, ButtonToolbar} from 'react-bootstrap';
 
 export class Index extends React.Component {
   
@@ -32,7 +32,6 @@ export class Index extends React.Component {
 						        <button className="custom-button">
 							        File
 						        </button>
-
 						        <button className="custom-button">
 							        Edit
 						        </button>
@@ -48,6 +47,20 @@ export class Index extends React.Component {
 						        <button className="custom-button">
 							        Help
 						        </button>
+						        <ButtonToolbar>
+							        <DropdownButton
+								        bsStyle="default"
+								        title= "Report Type"
+								        noCaret
+								        id="dropdown-no-caret"
+							        >
+								        <MenuItem eventKey="1">Article</MenuItem>
+								        <MenuItem eventKey="1">Report</MenuItem>
+								        <MenuItem eventKey="2">Letter</MenuItem>
+								        <MenuItem eventKey="3">Review</MenuItem>
+								        <MenuItem eventKey="4">Email</MenuItem>
+							        </DropdownButton>
+						        </ButtonToolbar>
 					        </div>
 				        </div>
 			        </div>
@@ -63,23 +76,37 @@ export class Index extends React.Component {
 		        </textarea>
 		        </div>
 		        <div className="right-container">
-			        <div className="title">
-				        Fact Confidence Level:
+			        <div className="right-top">
+				        <div className="title">
+					        Facts Suggestions:
+				        </div>
+				        <ListGroup>
+					        <ListGroupItem bsStyle="warning" header="Heading 1">
+						        Item 1
+					        </ListGroupItem>
+					        <br/>
+					        <ListGroupItem bsStyle="warning" header="Heading 1">
+						        Item 2
+					        </ListGroupItem>
+					        <br/>
+					        <ListGroupItem bsStyle="warning" header="Heading 1">
+						        ...
+					        </ListGroupItem>
+				        </ListGroup>
 			        </div>
-			        <div className="title">
-				        Suggest Article:
+			        <div className="right-down">
+				        <div className="title">
+					        Quick Reference for Writing:
+				        </div>
+				        <ListGroup>
+					        <ListGroupItem bsStyle="warning" header="Introduction">
+						        The introduction sets the scene for the main body of the report. The aims and objectives of the report should be explained in detail. Any problems or limitations in the scope of the report should be identified, and a description of research methods, the parameters of the research and any necessary background history should be included.
+
+						        In some reports, particularly in science subjects, separate headings for Methods and Results are used prior to the main body (Discussion) of the report as described below.
+
+					        </ListGroupItem>
+				        </ListGroup>
 			        </div>
-			        <ListGroup>
-				        <ListGroupItem bsStyle="warning" header="Heading 1">
-					        Item 1
-				        </ListGroupItem>
-				        <ListGroupItem bsStyle="warning" header="Heading 1">
-					        Item 2
-				        </ListGroupItem>
-				        <ListGroupItem bsStyle="warning" header="Heading 1">
-					        ...
-				        </ListGroupItem>
-			        </ListGroup>
 		        </div>
 	        </div>
         )
