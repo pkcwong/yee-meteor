@@ -28,7 +28,9 @@ Meteor.methods({
 								}
 								return 0;
 							});
+							console.log(entities[0]);
 							let wikiLink = entities[0]['wikiLink'];
+							console.log(wikiLink);
 							fetch(wikiLink).then((wikiResponse) => {
 								wikiResponse.text().then((wikiText) => {
 									const $ = cheerio.load(wikiText);
@@ -47,6 +49,7 @@ Meteor.methods({
 										},
 										body: JSON.stringify(paragraphJSON)
 									}).then((appleResponse) => {
+										console.log(appleResponse);
 										appleResponse.json().then((appleJson) => {
 											var regexp = /\[\d+\]+/g;
 											var paragraphsArray2 = [];
@@ -76,6 +79,8 @@ Meteor.methods({
 												entities: entities[0],
 												nlp: paraSentencesSet[appleJson[0][0]][appleJson[2][0]]
 											});
+										}).catch((err) => {
+											reject(err);
 										});
 									}).catch((err) => {
 										reject(err);

@@ -21,7 +21,8 @@ export class Index extends React.Component {
 	    	],
 		    input: '',
 		    textAreaPrev: '',
-	    	textAreaAfter: ''
+	    	textAreaAfter: '',
+		    facts: []
 	    };
 	    this.interval = null;
 	    this.interval2 = null;
@@ -43,7 +44,7 @@ export class Index extends React.Component {
 			                 }}/>
 				        </div>
 				        <div className="header-buttons">
-					        <input type="title" placeholder="Type Your Title Here"/>
+					        <input type="title" id="inputTitle" placeholder="Type Your Title Here"/>
 					        <div className="buttonGroup">
 						        <button className="custom-button">
 							        File
@@ -116,21 +117,21 @@ export class Index extends React.Component {
 									        clearTimeout(this.interval2);
 									        this.interval2 = setTimeout(() => {
 										        $("#card1").html(
-											        "<b>Text: </b>" +
-											        "<br/>In conclusion, I think that long-term traffic and pollution reductions would depend on educating the public to use public transport more, and on governments using public money to construct and run efficient systems." +
-											        "<br><br/><b>Link: </b> <a href=\"http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27\">http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27</a>"
+											        "Text:" +
+											        "<br/><b>In conclusion,</b> I think that long-term <b>traffic</b> and <b>pollution</b> reductions would depend on educating the public to use <b>public transport</b> more, and on governments using public money to construct and run efficient systems." +
+											        "<br><br/>Link: <a href=\"http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27\">http://www.ielts-writing.info/index.php/academic/ielts-writing-task-2-27</a>"
 										        );
 										        $("#card2").html(
-											        "<b>Text: </b>" +
-											        "<br/>In summary, the whole world should encourage alternative modes and forms of transportation to compete with the traditional mode which is private cars. That will make our mother Earth greener and a better place to live in." +
-											        "<br/><br/><b>Link: </b> <a href='https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car'>https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car</a>"
+											        "Text:" +
+											        "<br/><b>In summary</b>, the whole world should encourage alternative modes and forms of <b>transportation</b> to compete with the traditional mode which is private cars. That will make our mother Earth <b>greener</b> and a better place to live in." +
+											        "<br/><br/>Link: <a href='https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car'>https://www.ielts-mentor.com/writing-sample/writing-task-2/263-ielts-writing-task-2-sample-37-alternative-forms-of-transport-should-be-encouraged-and-international-laws-introduced-to-control-car</a>"
 										        );
 										        $("#card3").html(
-											        "<b>Text: </b>" +
-											        "<br/>Despite the problems of motorways, they are necessary and useful. With careful preparation and planning, the problems they cause could be reduced. People today are also more aware of environmental issues and as a result cars and road transport in general are becoming more environmentally friendly." +
-											        "<br/><br/><b>Link: </b> <a href='https://www.ielts-exam.net/ielts_writing_samples_task_2/964/'>https://www.ielts-exam.net/ielts_writing_samples_task_2/964/</a>"
+											        "Text:" +
+											        "<br/>Despite the problems of motorways, they are necessary and useful. With careful preparation and planning, the problems they cause could be <b>reduced</b>. People today are also more aware of <b>environmental</b> issues and as a result cars and road <b>transport</b> in general are becoming more <b>environmentally</b> friendly." +
+											        "<br/><br/>Link:  <a href='https://www.ielts-exam.net/ielts_writing_samples_task_2/964/'>https://www.ielts-exam.net/ielts_writing_samples_task_2/964/</a>"
 										        );
-									        }, 3000);
+									        }, 500);
 								        }}
 							        >
 								        Writeup Complete
@@ -149,8 +150,7 @@ export class Index extends React.Component {
 					        clearTimeout(this.interval);
 					        this.interval = setTimeout(() => {
 						        this.refresher();
-					        }, 5000);
-					        this.tooltipsGenerator('Henry', "King of England");
+					        }, 1000);
 				        }}
 				        placeholder="Hello there, you can begin typing here..."
 		            >
@@ -160,9 +160,28 @@ export class Index extends React.Component {
 			        </div>
 			        <ListGroup>
 				        <ListGroupItem bsStyle="warning" id="factSuggestionContainer">
-					        <div className="placeHolder">
-						        N.A.
-					        </div>
+
+					        {
+						        (() => {
+						        	if (this.state.facts.length !== 0 && this.state.facts[this.state.facts.length - 1] !== undefined) {
+						        		return (
+						        			<div>
+										        <b>
+											        Main Keyword: { this.state.facts[this.state.facts.length - 1]['entity'] }
+										        </b>
+							                    <p>
+								                    { this.state.facts[this.state.facts.length - 1]['nlp'] }
+										        </p>
+									        </div>
+								        );
+							        }
+							        else{
+						        		return(<div className="placeHolder">
+									        N.A.
+								        </div>)
+							        }
+						        })()
+					        }
 				        </ListGroupItem>
 			        </ListGroup>
 		        </div>
@@ -198,7 +217,7 @@ export class Index extends React.Component {
 				        <ListGroup>
 					        <ListGroupItem bsStyle="warning" id="writing">
 						        <div className="placeHolder">
-							        Click on Text Type for quick reference.
+							        Click on "Text Type" for quick reference.
 						        </div>
 					        </ListGroupItem>
 				        </ListGroup>
@@ -299,7 +318,23 @@ export class Index extends React.Component {
 								razor: pack
 							}
 						}, () => {
-							console.log(this.state.razor);
+							//console.log(this.state.razor);
+							let facts = [];
+							this.state.text.split('.').forEach((item) => {
+								if (this.state.razor[item] !== undefined) {
+									facts.push({
+										user: item,
+										nlp: this.state.razor[item]['nlp'],
+										entity: this.state.razor[item]['entities']['entityEnglishId']
+									});
+								}
+							});
+							this.setState({
+								facts: facts
+							}, () => {
+								console.log(this.state.facts);
+								//$("#factSuggestionContainer").html(<b>Original<>);
+							});
 						});
 					} else {
 						console.error(err);

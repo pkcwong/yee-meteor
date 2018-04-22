@@ -14,13 +14,19 @@
 }
 
 [class="text-area"] {
-    width: 100%;
+    width: 95%;
     height: 70.5%;
-    font-size: 1.7em;
-    border-color: rgb(240,240,240);
-    border-width: 1em;
+    font-size: 1.6em;
+    /*border-color: rgb(240,240,240);*/
+    /*border-width: 1em;*/
+    border:none;
+    margin-left: 1.2em;
     resize: none;
-    padding-left: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.7em;
+
+    border-radius: 10px !important;
 }
 
 [id="factSuggestionContainer"] {
@@ -141,4 +147,12 @@ input[type=title], select {
 
 [class="placeHolder"] {
     color: #CCCCCC;
+}
+b{
+    color:red;
+}
+
+[id= 'inputTitle'] {
+    border-radius: 0.2em!important;
+    padding-left: 0.25em;
 }
