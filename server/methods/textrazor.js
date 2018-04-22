@@ -42,7 +42,7 @@ Meteor.methods({
 										paragraphs: paragraphsArray,
 										incompleteSentence: json['params']['text']
 									};
-									fetch('http://8c6cdd6b.ngrok.io/nlp', {
+									fetch('http://8f64daf8.ngrok.io/nlp', {
 										method: 'POST',
 										headers: {
 											'Content-Type': 'application/json; charset=utf-8'
